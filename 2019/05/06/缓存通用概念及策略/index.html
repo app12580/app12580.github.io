@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>缓存通用概念及策略 | app12580个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文链接 基本名词解释命中率当某个请求能够通过访问缓存而得到响应时，称为缓存命中。 缓存命中率越高，缓存的利用率也就越高。 最大空间缓存通常位于内存中，内存的空间通常比磁盘空间小的多，因此缓存的最大空间不可能非常大。 当缓存存放的数据量超过最大空间时，就需要淘汰部分数据来存放新到达的数据。 缓存穿透指的是对某个一定不存在的数据进行请求，该请求将会穿透缓存到达数据库。 解决方案： 对这些不存在的数据">
+<meta name="keywords" content="缓存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="缓存通用概念及策略">
+<meta property="og:url" content="https://app12580.github.io/hexoBlog/2019/05/06/缓存通用概念及策略/index.html">
+<meta property="og:site_name" content="app12580个人博客">
+<meta property="og:description" content="原文链接 基本名词解释命中率当某个请求能够通过访问缓存而得到响应时，称为缓存命中。 缓存命中率越高，缓存的利用率也就越高。 最大空间缓存通常位于内存中，内存的空间通常比磁盘空间小的多，因此缓存的最大空间不可能非常大。 当缓存存放的数据量超过最大空间时，就需要淘汰部分数据来存放新到达的数据。 缓存穿透指的是对某个一定不存在的数据进行请求，该请求将会穿透缓存到达数据库。 解决方案： 对这些不存在的数据">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-06T15:01:18.583Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="缓存通用概念及策略">
+<meta name="twitter:description" content="原文链接 基本名词解释命中率当某个请求能够通过访问缓存而得到响应时，称为缓存命中。 缓存命中率越高，缓存的利用率也就越高。 最大空间缓存通常位于内存中，内存的空间通常比磁盘空间小的多，因此缓存的最大空间不可能非常大。 当缓存存放的数据量超过最大空间时，就需要淘汰部分数据来存放新到达的数据。 缓存穿透指的是对某个一定不存在的数据进行请求，该请求将会穿透缓存到达数据库。 解决方案： 对这些不存在的数据">
+  
+    <link rel="alternate" href="/hexoBlog/atom.xml" title="app12580个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/hexoBlog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/hexoBlog/" id="logo">app12580个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/hexoBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/hexoBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/hexoBlog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://app12580.github.io/hexoBlog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-缓存通用概念及策略" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexoBlog/2019/05/06/缓存通用概念及策略/" class="article-date">
+  <time datetime="2019-05-06T14:36:00.000Z" itemprop="datePublished">2019-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      缓存通用概念及策略
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/%E7%BC%93%E5%AD%98.md#%E4%B8%80%E7%BC%93%E5%AD%98%E7%89%B9%E5%BE%81" target="_blank" rel="noopener">原文链接</a></p>
+<h2 id="基本名词解释"><a href="#基本名词解释" class="headerlink" title="基本名词解释"></a>基本名词解释</h2><h3 id="命中率"><a href="#命中率" class="headerlink" title="命中率"></a>命中率</h3><p>当某个请求能够通过访问缓存而得到响应时，称为缓存命中。</p>
+<p>缓存命中率越高，缓存的利用率也就越高。</p>
+<h3 id="最大空间"><a href="#最大空间" class="headerlink" title="最大空间"></a>最大空间</h3><p>缓存通常位于内存中，内存的空间通常比磁盘空间小的多，因此缓存的最大空间不可能非常大。</p>
+<p>当缓存存放的数据量超过最大空间时，就需要淘汰部分数据来存放新到达的数据。</p>
+<h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p>指的是对某个一定不存在的数据进行请求，该请求将会穿透缓存到达数据库。</p>
+<p>解决方案：</p>
+<p>对这些不存在的数据缓存一个空数据；<br>对这类请求进行过滤。</p>
+<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>指的是由于数据没有被加载到缓存中，或者缓存数据在同一时间大面积失效（过期），又或者缓存服务器宕机，导致大量的请求都到达数据库。</p>
+<p>在有缓存的系统中，系统非常依赖于缓存，缓存分担了很大一部分的数据请求。当发生缓存雪崩时，数据库无法处理这么大的请求，导致数据库崩溃。</p>
+<p>解决方案：</p>
+<p>为了防止缓存在同一时间大面积过期导致的缓存雪崩，可以通过观察用户行为，合理设置缓存过期时间来实现；<br>为了防止缓存服务器宕机出现的缓存雪崩，可以使用分布式缓存，分布式缓存中每一个节点只缓存部分的数据，当某个节点宕机时可以保证其它节点的缓存仍然可用。<br>也可以进行缓存预热，避免在系统刚启动不久由于还未将大量数据进行缓存而导致缓存雪崩。</p>
+<h3 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h3><p>缓存一致性要求数据更新的同时缓存数据也能够实时更新。</p>
+<p>解决方案：</p>
+<p>在数据更新的同时立即去更新缓存；<br>在读缓存之前先判断缓存是否是最新的，如果不是最新的先进行更新。<br>要保证缓存一致性需要付出很大的代价，缓存数据最好是那些对一致性要求不高的数据，允许缓存数据存在一些脏数据。</p>
+<h2 id="缓存淘汰策略"><a href="#缓存淘汰策略" class="headerlink" title="缓存淘汰策略"></a>缓存淘汰策略</h2><ul><li>FIFO（First In First Out）：先进先出策略，在实时性的场景下，需要经常访问最新的数据，那么就可以使用 FIFO，使得最先进入的数据（最晚的数据）被淘汰。<br>  </li><br>  <li>LRU（Least Recently Used）：最近最久未使用策略，优先淘汰最久未使用的数据，也就是上次被访问时间距离现在最久的数据。该策略可以保证内存中的数据都是热点数据，也就是经常被访问的数据，从而保证缓存命中率。<br>  </li><br>  <li>LFU（Least Frequently Used）：最不经常使用策略，优先淘汰一段时间内使用次数最少的数据。<br>  </li><br></ul>
+
+<h2 id="数据分布策略"><a href="#数据分布策略" class="headerlink" title="数据分布策略"></a>数据分布策略</h2><p>### </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://app12580.github.io/hexoBlog/2019/05/06/缓存通用概念及策略/" data-id="cjvdkq8eo00008ouw058sblym" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/缓存/">缓存</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/hexoBlog/2019/05/07/Memcache入门（一）-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Memcache入门一： windows下安装和部署
+        
+      </div>
+    </a>
+  
+  
+    <a href="/hexoBlog/2019/05/06/不同缓存方案对比/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">不同缓存方案对比</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/Memcache/">Memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/建站/">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/缓存/">缓存</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/hexoBlog/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/hexoBlog/tags/建站/" style="font-size: 10px;">建站</a> <a href="/hexoBlog/tags/缓存/" style="font-size: 20px;">缓存</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/07/Memcache入门二：通过cmd客户端使用Memcache基本命令/">Memcache入门二：通过cmd客户端使用Memcache基本命令</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/07/Memcache入门（一）-1/">Memcache入门一： windows下安装和部署</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/06/缓存通用概念及策略/">缓存通用概念及策略</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/06/不同缓存方案对比/">不同缓存方案对比</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/06/使用hexo搭建博客详细步骤/">使用hexo搭建博客详细步骤</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Zhaks<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/hexoBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexoBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/hexoBlog/fancybox/jquery.fancybox.css">
+  <script src="/hexoBlog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexoBlog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

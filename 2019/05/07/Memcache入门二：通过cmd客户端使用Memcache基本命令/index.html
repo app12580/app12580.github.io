@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Memcache入门二：通过cmd客户端使用Memcache基本命令 | app12580个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Memcache基本命令参考教程 存储命令功能介绍Memcached set 命令: 用于将 value(数据值) 存储在指定的 key(键) 中。如果set的key已经存在，该命令可以更新该key所对应的原来的数据，也就是实现更新的作用。Memcached add 命令:用于将 value(数据值) 存储在指定的 key(键) 中。如果 add 的 key 已经存在，则不会更新数据(过期的 ke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Memcache入门二：通过cmd客户端使用Memcache基本命令">
+<meta property="og:url" content="https://app12580.github.io/hexoBlog/2019/05/07/Memcache入门二：通过cmd客户端使用Memcache基本命令/index.html">
+<meta property="og:site_name" content="app12580个人博客">
+<meta property="og:description" content="Memcache基本命令参考教程 存储命令功能介绍Memcached set 命令: 用于将 value(数据值) 存储在指定的 key(键) 中。如果set的key已经存在，该命令可以更新该key所对应的原来的数据，也就是实现更新的作用。Memcached add 命令:用于将 value(数据值) 存储在指定的 key(键) 中。如果 add 的 key 已经存在，则不会更新数据(过期的 ke">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-07T12:23:23.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Memcache入门二：通过cmd客户端使用Memcache基本命令">
+<meta name="twitter:description" content="Memcache基本命令参考教程 存储命令功能介绍Memcached set 命令: 用于将 value(数据值) 存储在指定的 key(键) 中。如果set的key已经存在，该命令可以更新该key所对应的原来的数据，也就是实现更新的作用。Memcached add 命令:用于将 value(数据值) 存储在指定的 key(键) 中。如果 add 的 key 已经存在，则不会更新数据(过期的 ke">
+  
+    <link rel="alternate" href="/hexoBlog/atom.xml" title="app12580个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/hexoBlog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/hexoBlog/" id="logo">app12580个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/hexoBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/hexoBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/hexoBlog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://app12580.github.io/hexoBlog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Memcache入门二：通过cmd客户端使用Memcache基本命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexoBlog/2019/05/07/Memcache入门二：通过cmd客户端使用Memcache基本命令/" class="article-date">
+  <time datetime="2019-05-07T09:57:32.000Z" itemprop="datePublished">2019-05-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Memcache入门二：通过cmd客户端使用Memcache基本命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Memcache基本命令"><a href="#Memcache基本命令" class="headerlink" title="Memcache基本命令"></a>Memcache基本命令</h2><p><a href="https://www.runoob.com/memcached/memcached-set-data.html" target="_blank" rel="noopener">参考教程</a></p>
+<h3 id="存储命令"><a href="#存储命令" class="headerlink" title="存储命令"></a>存储命令</h3><p><strong>功能介绍</strong><br>Memcached set 命令: 用于将 value(数据值) 存储在指定的 key(键) 中。如果set的key已经存在，该命令可以更新该key所对应的原来的数据，也就是实现更新的作用。<br>Memcached add 命令:用于将 value(数据值) 存储在指定的 key(键) 中。如果 add 的 key 已经存在，则不会更新数据(过期的 key 会更新)，之前的值将仍然保持相同，并且您将获得响应 NOT_STORED。<br>Memcached replace 命令:用于替换已存在的 key(键) 的 value(数据值)。如果 key 不存在，则替换失败，并且您将获得响应 NOT_STORED。<br>Memcached append 命令:用于向已存在 key(键) 的 value(数据值) 后面追加数据 。<br>Memcached prepend 命令:用于向已存在 key(键) 的 value(数据值) 前面追加数据 。<br>Memcached CAS 命令:用于执行一个”检查并设置”的操作，它仅在当前客户端最后一次取值后，该key 对应的值没有被其他客户端修改的情况下， 才能够将值写入。检查是通过cas_token参数进行的， 这个参数是Memcach指定给已经存在的元素的一个唯一的64位值。<br><span class="color-red">翻译成人话：CAS命令可以用来赋值，赋值成功条件：该key值被当前客户端取值后没有被其他客户端修改过</span></p>
+<p><strong>命令语法</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>|add|replace|append|prepend key flags exptime bytes [noreply] </span><br><span class="line">value </span><br><span class="line"></span><br><span class="line">cas key flags exptime bytes unique_cas_token [noreply]</span><br><span class="line">value</span><br></pre></td></tr></table></figure></p>
+<ul><li><b>key：</b>键值 key-value 结构中的 key，用于查找缓存值。</li><br><li><b>flags</b>：可以包括键值对的整型参数，客户机使用它存储关于键值对的额外信息。<br>  flags的作用：<br> –<a href="https://stackoverflow.com/questions/12228097/what-is-the-flags-arg-in-finagle-memcached-set-method" target="_blank" rel="noopener">“flags” is a 4byte space that is stored alongside of the main value. Many sub libraries make use of this field, so in most cases users should avoid making use of it.</a><br>  //stackOver 真好用~</li><br><li><b>exptime</b>：在缓存中保存键值对的时间长度（以秒为单位，0 表示永远）</li><br><li><b>bytes</b>：在缓存中存储的字节数</li><br><li><b>unique_cas_token</b>通过 gets 命令获取的一个唯一的64位值。</li><br><li><b>noreply（可选）</b>： 该参数告知服务器不需要返回数据</li><br><li><b>value</b>：存储的值（始终位于第二行）（可直接理解为key-value结构中的value）<br>  //<font color="red">如果与bytes的长度不同，则命令报错</font></li><br></ul>
+
+
+<p><strong>命令实例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">// set命令</span><br><span class="line">set runoob 0 900 9</span><br><span class="line">memcached</span><br><span class="line">STORED</span><br><span class="line"></span><br><span class="line">get runoob</span><br><span class="line">VALUE runoob 0 9</span><br><span class="line">memcached</span><br><span class="line">END</span><br><span class="line"></span><br><span class="line">// add命令 //可以理解成&quot;set if not exists&quot;</span><br><span class="line">add new_key 0 900 10</span><br><span class="line">data_value</span><br><span class="line">STORED</span><br><span class="line">get new_key</span><br><span class="line">VALUE new_key 0 10</span><br><span class="line">data_value</span><br><span class="line">END</span><br><span class="line"></span><br><span class="line">// replace命令</span><br><span class="line">add mykey 0 900 10</span><br><span class="line">data_value</span><br><span class="line">STORED</span><br><span class="line">get mykey</span><br><span class="line">VALUE mykey 0 10</span><br><span class="line">data_value</span><br><span class="line">END</span><br><span class="line">replace mykey 0 900 16</span><br><span class="line">some_other_value</span><br><span class="line">get mykey</span><br><span class="line">VALUE mykey 0 16</span><br><span class="line">some_other_value</span><br><span class="line">END</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://app12580.github.io/hexoBlog/2019/05/07/Memcache入门二：通过cmd客户端使用Memcache基本命令/" data-id="cjvdmdwrd0004hkuwwn9125xe" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexoBlog/2019/05/07/Memcache入门（一）-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Memcache入门一： windows下安装和部署</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/Memcache/">Memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/建站/">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/缓存/">缓存</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/hexoBlog/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/hexoBlog/tags/建站/" style="font-size: 10px;">建站</a> <a href="/hexoBlog/tags/缓存/" style="font-size: 20px;">缓存</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/07/Memcache入门二：通过cmd客户端使用Memcache基本命令/">Memcache入门二：通过cmd客户端使用Memcache基本命令</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/07/Memcache入门（一）-1/">Memcache入门一： windows下安装和部署</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/06/缓存通用概念及策略/">缓存通用概念及策略</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/06/不同缓存方案对比/">不同缓存方案对比</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/06/使用hexo搭建博客详细步骤/">使用hexo搭建博客详细步骤</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Zhaks<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/hexoBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexoBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/hexoBlog/fancybox/jquery.fancybox.css">
+  <script src="/hexoBlog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexoBlog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
