@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>SpringData入门一： 快速使用 | app12580个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SpringBoot整合SpringData参考博客 引入Maven依赖1234567891011&amp;lt;!--引入MySQL的依赖关系--&amp;gt;&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;mysql&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;mysql-connector-java&amp;lt;/artifactId&amp;gt;&amp;lt;/de">
+<meta name="keywords" content="SpringData">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringData入门一： 快速使用">
+<meta property="og:url" content="https://app12580.github.io/hexoBlog/2019/05/08/SpringData入门一：-快速使用/index.html">
+<meta property="og:site_name" content="app12580个人博客">
+<meta property="og:description" content="SpringBoot整合SpringData参考博客 引入Maven依赖1234567891011&amp;lt;!--引入MySQL的依赖关系--&amp;gt;&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;mysql&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;mysql-connector-java&amp;lt;/artifactId&amp;gt;&amp;lt;/de">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-08T11:53:58.826Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringData入门一： 快速使用">
+<meta name="twitter:description" content="SpringBoot整合SpringData参考博客 引入Maven依赖1234567891011&amp;lt;!--引入MySQL的依赖关系--&amp;gt;&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;mysql&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;mysql-connector-java&amp;lt;/artifactId&amp;gt;&amp;lt;/de">
+  
+    <link rel="alternate" href="/hexoBlog/atom.xml" title="app12580个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/hexoBlog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/hexoBlog/" id="logo">app12580个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/hexoBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/hexoBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/hexoBlog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://app12580.github.io/hexoBlog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SpringData入门一：-快速使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexoBlog/2019/05/08/SpringData入门一：-快速使用/" class="article-date">
+  <time datetime="2019-05-08T11:10:00.000Z" itemprop="datePublished">2019-05-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringData入门一： 快速使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SpringBoot整合SpringData"><a href="#SpringBoot整合SpringData" class="headerlink" title="SpringBoot整合SpringData"></a>SpringBoot整合SpringData</h2><p><a href="https://blog.csdn.net/weixin_41557632/article/details/79429929" target="_blank" rel="noopener">参考博客</a></p>
+<h3 id="引入Maven依赖"><a href="#引入Maven依赖" class="headerlink" title="引入Maven依赖"></a>引入Maven依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--引入MySQL的依赖关系--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--引入JPA的依赖关系--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="配置信息"><a href="#配置信息" class="headerlink" title="配置信息"></a>配置信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC</span><br><span class="line">    username: root</span><br><span class="line">    password: 123456</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">  jpa:</span><br><span class="line">    database: mysql</span><br><span class="line">    show-sql: true</span><br></pre></td></tr></table></figure>
+<h3 id="编写java代码"><a href="#编写java代码" class="headerlink" title="编写java代码"></a>编写java代码</h3><h4 id="entity"><a href="#entity" class="headerlink" title="entity"></a>entity</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">@Table(name=&quot;t_user&quot;)</span><br><span class="line">public class User &#123;</span><br><span class="line">    @Id</span><br><span class="line">    @GeneratedValue(strategy = GenerationType.IDENTITY)</span><br><span class="line">    @Column(name = &quot;t_id&quot;)</span><br><span class="line">    private Long id;</span><br><span class="line">    @Column(name = &quot;t_name&quot;)</span><br><span class="line">    private String name;</span><br><span class="line">    @Column(name = &quot;t_age&quot;)</span><br><span class="line">    private String age;</span><br><span class="line">    @Column(name = &quot;t_address&quot;)</span><br><span class="line">    private String address;</span><br><span class="line"></span><br><span class="line">    public Long getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setId(Long id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getAge() &#123;</span><br><span class="line">        return age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAge(String age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getAddress() &#123;</span><br><span class="line">        return address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAddress(String address) &#123;</span><br><span class="line">        this.address = address;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.jianshu.com/p/b1e36e3b9a65" target="_blank" rel="noopener">GenerationType注解详解</a><br>1.GenerationType.TABLE<br>使用一个特定的数据库表格来保存主键,持久化引擎通过关系数据库的一张特定的表格来生成主键,这种策略的好处就是不依赖于外部环境和数据库的具体实现,在不同数据库间可以很容易的进行移植,但由于其不能充分利用数据库的特性,所以不会优先使用。<br>2.GenerationType.SEQUENCE<br>在某些数据库中,不支持主键自增长,比如Oracle,其提供了一种叫做”序列(sequence)”的机制生成主键。此时,GenerationType.SEQUENCE就可以作为主键生成策略。该策略的不足之处正好与TABLE相反,由于只有部分数据库(Oracle,PostgreSQL,DB2)支持序列对象,所以该策略一般不应用于其他数据库。<br>3.GenerationType.IDENTITY<br>此种主键生成策略就是通常所说的主键自增长,数据库在插入数据时,会自动给主键赋值,比如MYSQL可以在创建表时声明”auto_increment” 来指定主键自增长。该策略在大部分数据库中都提供了支持(指定方法或关键字可能不同),但还是有少数数据库不支持,所以可移植性略差。使用自增长主键生成策略是只需要声明strategy = GenerationType.IDENTITY即可。<br>4.GenerationType.AUTO<br>把主键生成策略交给持久化引擎(persistence engine),持久化引擎会根据数据库在以上三种主键生成策略中选择其中一种。此种主键生成策略比较常用,由于JPA默认的生成策略就是GenerationType.AUTO,所以使用此种策略时.可以显式的指定@GeneratedValue(strategy = GenerationType.AUTO)也可以直接@GeneratedValue<br>类似于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@GeneratedValue(strategy = GenerationType.AUTO)</span><br><span class="line">    private Integer id;</span><br></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@GeneratedValue</span><br><span class="line">private Integer id;</span><br></pre></td></tr></table></figure></p>
+<h4 id="service"><a href="#service" class="headerlink" title="service"></a>service</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface UserService extends JpaRepository&lt;User, Long&gt;, JpaSpecificationExecutor&lt;User&gt;, Serializable &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(value = &quot;/user&quot;)</span><br><span class="line">public class UserController &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private UserService userService;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 数据新增或更新，save方法可以执行添加也可以执行更新，如果需要执行持久化的实体存在主键值则更新数据，如果不存在则添加数据。</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value = &quot;/save&quot;, method = RequestMethod.GET)</span><br><span class="line">    public User save(User user) &#123;</span><br><span class="line">        return userService.save(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 查询用户信息</span><br><span class="line">     * */</span><br><span class="line">    @RequestMapping(value = &quot;/list&quot;,method = RequestMethod.GET)</span><br><span class="line">    public List&lt;User&gt; list()&#123;</span><br><span class="line">        return userService.findAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(value = &quot;/delete&quot;,method = RequestMethod.GET)</span><br><span class="line">    public List&lt;User&gt; delete(Long id)&#123;</span><br><span class="line">        userService.deleteById(id);</span><br><span class="line">        return userService.findAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://app12580.github.io/hexoBlog/2019/05/08/SpringData入门一：-快速使用/" data-id="cjvf4gnb8000370uwxfta7fb8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/SpringData/">SpringData</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexoBlog/2019/05/08/Memcache入门三：-SpringBoot整合Memcache/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Memcache入门三： SpringBoot整合Memcache</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/Memcache/">Memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/SpringData/">SpringData</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/建站/">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/缓存/">缓存</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/hexoBlog/tags/Memcache/" style="font-size: 20px;">Memcache</a> <a href="/hexoBlog/tags/SpringData/" style="font-size: 10px;">SpringData</a> <a href="/hexoBlog/tags/建站/" style="font-size: 10px;">建站</a> <a href="/hexoBlog/tags/缓存/" style="font-size: 15px;">缓存</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/08/SpringData入门一：-快速使用/">SpringData入门一： 快速使用</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/08/Memcache入门三：-SpringBoot整合Memcache/">Memcache入门三： SpringBoot整合Memcache</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/07/Memcache入门二：通过cmd客户端使用Memcache基本命令/">Memcache入门二：通过cmd客户端使用Memcache基本命令</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/07/Memcache入门（一）-1/">Memcache入门一： windows下安装和部署</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/06/缓存通用概念及策略/">缓存通用概念及策略</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Zhaks<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/hexoBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexoBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/hexoBlog/fancybox/jquery.fancybox.css">
+  <script src="/hexoBlog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexoBlog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
