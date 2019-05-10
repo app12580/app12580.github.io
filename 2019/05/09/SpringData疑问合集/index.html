@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>SpringData疑问合集 | app12580个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1、为什么在springdata jpa接口不用@Repository还能Autowired成功a.首先，把问题用百度搜索，发现没有任何卵用，全是互相抄的乱七八糟的博客b.然后，科学上网，在谷歌搜索”springdata don’t have repository”，第一条就指向stackoverflow，12345Did you notice, CrudRepository has @NoRep">
+<meta name="keywords" content="SpringData">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringData疑问合集">
+<meta property="og:url" content="https://app12580.github.io/hexoBlog/2019/05/09/SpringData疑问合集/index.html">
+<meta property="og:site_name" content="app12580个人博客">
+<meta property="og:description" content="1、为什么在springdata jpa接口不用@Repository还能Autowired成功a.首先，把问题用百度搜索，发现没有任何卵用，全是互相抄的乱七八糟的博客b.然后，科学上网，在谷歌搜索”springdata don’t have repository”，第一条就指向stackoverflow，12345Did you notice, CrudRepository has @NoRep">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-10T16:21:07.559Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringData疑问合集">
+<meta name="twitter:description" content="1、为什么在springdata jpa接口不用@Repository还能Autowired成功a.首先，把问题用百度搜索，发现没有任何卵用，全是互相抄的乱七八糟的博客b.然后，科学上网，在谷歌搜索”springdata don’t have repository”，第一条就指向stackoverflow，12345Did you notice, CrudRepository has @NoRep">
+  
+    <link rel="alternate" href="/hexoBlog/atom.xml" title="app12580个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/hexoBlog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/hexoBlog/" id="logo">app12580个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/hexoBlog/">Home</a>
+        
+          <a class="main-nav-link" href="/hexoBlog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/hexoBlog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://app12580.github.io/hexoBlog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SpringData疑问合集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexoBlog/2019/05/09/SpringData疑问合集/" class="article-date">
+  <time datetime="2019-05-09T09:51:00.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringData疑问合集
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、为什么在springdata-jpa接口不用-Repository还能Autowired成功"><a href="#1、为什么在springdata-jpa接口不用-Repository还能Autowired成功" class="headerlink" title="1、为什么在springdata jpa接口不用@Repository还能Autowired成功"></a>1、为什么在springdata jpa接口不用@Repository还能Autowired成功</h3><p>a.首先，把问题用百度搜索，发现没有任何卵用，全是互相抄的乱七八糟的博客<br>b.然后，科学上网，在谷歌搜索”springdata don’t have repository”，第一条就指向<a href="https://stackoverflow.com/questions/51918181/why-isnt-necessary-repository-for-this-spring-boot-web-app" target="_blank" rel="noopener">stackoverflow</a>，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Did you notice, CrudRepository has @NoRepositoryBean annotation and this annotation makes CrudRepository an intermediate interface. An intermediate interface is basically adds general functionality for your derived repositories.</span><br><span class="line"></span><br><span class="line">If any class annotated with @NoRepositoryBean Spring Data does not create instances at run-time. Because it&apos;s intermediate class and it&apos;s created to add functionality for derived class.</span><br><span class="line"></span><br><span class="line">If you extend an interface that have @NoRepositoryBean and your derived interface doesn&apos;t have @NoRepositoryBean Spring knows that you are trying to use that functionality in your real Repository interface so adding @Repository annotation is verbose.</span><br></pre></td></tr></table></figure></p>
+<p>c. 关于”it’s created to add functionality for derived class.”的理解没有特别明确，于是百度”spring Data @NoRepositoryBean”，找到了相关解释:<a href="https://www.oschina.net/question/2491333_2302037" target="_blank" rel="noopener">确保添加了该注解的 repository 接口不会在运行时被创建实例。也就是说，使用了该注解的接口不会被单独创建实例，只会作为其他接口的父接口而被使用。</a><br>和springdata的重要接口Repository(<a href="https://blog.csdn.net/crpxnmmafq/article/details/78147251" target="_blank" rel="noopener">https://blog.csdn.net/crpxnmmafq/article/details/78147251</a>)<br>d. 个人总结一下：<br>  @NoRepositoryBean 是不允许spring容器直接创建该接口的实例<br>  @Repository，SpringData的基础接口，凡是继承这个接口的，框架会帮我们去创建相关的实例</p>
+<h3 id="2、在JPQL中直接使用”-”占位符报错：JDBC-style-parameters-are-not-supported-for-JPA-queries"><a href="#2、在JPQL中直接使用”-”占位符报错：JDBC-style-parameters-are-not-supported-for-JPA-queries" class="headerlink" title="2、在JPQL中直接使用”?”占位符报错：JDBC style parameters (?) are not supported for JPA queries."></a>2、在JPQL中直接使用”?”占位符报错：JDBC style parameters (?) are not supported for JPA queries.</h3><p>解决： 疑似新版本jar包不支持(<a href="https://blog.csdn.net/qq_42952331/article/details/84778064" target="_blank" rel="noopener">参考博客</a>)这种语法，改成”:paramName”的方式，就可以正常调用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://app12580.github.io/hexoBlog/2019/05/09/SpringData疑问合集/" data-id="cjvhtxaai0001nkuw8rlux17c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/SpringData/">SpringData</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexoBlog/2019/05/09/SpringData手册一：-JpaRepository命名规则/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SpringData手册一： @JpaRepository命名规则</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/Memcache/">Memcache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/SpringData/">SpringData</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/建站/">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/缓存/">缓存</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/hexoBlog/tags/Memcache/" style="font-size: 20px;">Memcache</a> <a href="/hexoBlog/tags/SpringData/" style="font-size: 20px;">SpringData</a> <a href="/hexoBlog/tags/建站/" style="font-size: 10px;">建站</a> <a href="/hexoBlog/tags/缓存/" style="font-size: 15px;">缓存</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/09/SpringData疑问合集/">SpringData疑问合集</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/09/SpringData手册一：-JpaRepository命名规则/">SpringData手册一： @JpaRepository命名规则</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/09/SpringData讲解一：-Repository与JpaSpecificationExecutor/">SpringData讲解一： @JpaRepository与JpaSpecificationExecutor</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/08/SpringData入门一：-快速使用/">SpringData使用入门一： 快速使用</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/08/Memcache入门三：-SpringBoot整合Memcache/">Memcache入门三： SpringBoot整合Memcache</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Zhaks<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/hexoBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexoBlog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/hexoBlog/fancybox/jquery.fancybox.css">
+  <script src="/hexoBlog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexoBlog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

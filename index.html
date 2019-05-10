@@ -62,6 +62,181 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-SpringData疑问合集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexoBlog/2019/05/09/SpringData疑问合集/" class="article-date">
+  <time datetime="2019-05-09T09:51:00.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexoBlog/2019/05/09/SpringData疑问合集/">SpringData疑问合集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、为什么在springdata-jpa接口不用-Repository还能Autowired成功"><a href="#1、为什么在springdata-jpa接口不用-Repository还能Autowired成功" class="headerlink" title="1、为什么在springdata jpa接口不用@Repository还能Autowired成功"></a>1、为什么在springdata jpa接口不用@Repository还能Autowired成功</h3><p>a.首先，把问题用百度搜索，发现没有任何卵用，全是互相抄的乱七八糟的博客<br>b.然后，科学上网，在谷歌搜索”springdata don’t have repository”，第一条就指向<a href="https://stackoverflow.com/questions/51918181/why-isnt-necessary-repository-for-this-spring-boot-web-app" target="_blank" rel="noopener">stackoverflow</a>，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Did you notice, CrudRepository has @NoRepositoryBean annotation and this annotation makes CrudRepository an intermediate interface. An intermediate interface is basically adds general functionality for your derived repositories.</span><br><span class="line"></span><br><span class="line">If any class annotated with @NoRepositoryBean Spring Data does not create instances at run-time. Because it&apos;s intermediate class and it&apos;s created to add functionality for derived class.</span><br><span class="line"></span><br><span class="line">If you extend an interface that have @NoRepositoryBean and your derived interface doesn&apos;t have @NoRepositoryBean Spring knows that you are trying to use that functionality in your real Repository interface so adding @Repository annotation is verbose.</span><br></pre></td></tr></table></figure></p>
+<p>c. 关于”it’s created to add functionality for derived class.”的理解没有特别明确，于是百度”spring Data @NoRepositoryBean”，找到了相关解释:<a href="https://www.oschina.net/question/2491333_2302037" target="_blank" rel="noopener">确保添加了该注解的 repository 接口不会在运行时被创建实例。也就是说，使用了该注解的接口不会被单独创建实例，只会作为其他接口的父接口而被使用。</a><br>和springdata的重要接口Repository(<a href="https://blog.csdn.net/crpxnmmafq/article/details/78147251" target="_blank" rel="noopener">https://blog.csdn.net/crpxnmmafq/article/details/78147251</a>)<br>d. 个人总结一下：<br>  @NoRepositoryBean 是不允许spring容器直接创建该接口的实例<br>  @Repository，SpringData的基础接口，凡是继承这个接口的，框架会帮我们去创建相关的实例</p>
+<h3 id="2、在JPQL中直接使用”-”占位符报错：JDBC-style-parameters-are-not-supported-for-JPA-queries"><a href="#2、在JPQL中直接使用”-”占位符报错：JDBC-style-parameters-are-not-supported-for-JPA-queries" class="headerlink" title="2、在JPQL中直接使用”?”占位符报错：JDBC style parameters (?) are not supported for JPA queries."></a>2、在JPQL中直接使用”?”占位符报错：JDBC style parameters (?) are not supported for JPA queries.</h3><p>解决： 疑似新版本jar包不支持(<a href="https://blog.csdn.net/qq_42952331/article/details/84778064" target="_blank" rel="noopener">参考博客</a>)这种语法，改成”:paramName”的方式，就可以正常调用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://app12580.github.io/hexoBlog/2019/05/09/SpringData疑问合集/" data-id="cjvhtxaai0001nkuw8rlux17c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/SpringData/">SpringData</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SpringData手册一：-JpaRepository命名规则" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexoBlog/2019/05/09/SpringData手册一：-JpaRepository命名规则/" class="article-date">
+  <time datetime="2019-05-09T09:13:00.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexoBlog/2019/05/09/SpringData手册一：-JpaRepository命名规则/">SpringData手册一： @JpaRepository命名规则</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <table border="1" cellpadding="0" cellspacing="0" title summary style="border-spacing:0px;width:852px;border-style:solid;border-color:rgb(163,163,163);border-width:1pt;"><tbody><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);text-align:center;font-family:'PingFang SC';"><span style="font-weight:bold;">Keyword</span></p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);text-align:center;font-family:'PingFang SC';"><span style="font-weight:bold;">Sample</span></p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);text-align:center;font-family:'PingFang SC';"><span style="font-weight:bold;">JPQL snippet</span></p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">IsNotNull</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByAgeNotNull</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.age not null</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">Like</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByNameLike</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.name like ?1</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">NotLike</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByNameNotLike</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.name not like ?1</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">StartingWith</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByNameStartingWith</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.name like ?1(parameter bound with appended %)</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">EndingWith</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByNameEndingWith</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.name like ?1(parameter bound with prepended %)</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">Containing</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByNameContaining</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.name like ?1(parameter bound wrapped in %)</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">OrderBy</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByAgeOrderByName</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.age = ?1 order by x.name desc</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">Not</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByNameNot</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.name &lt;&gt; ?1</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">In</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByAgeIn</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.age in ?1</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">NotIn</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByAgeNotIn</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.age not in ?1</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">True</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByActiveTrue</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.avtive = true</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">Flase</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByActiveFalse</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.active = false</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">And&nbsp;</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByNameAndAge</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.name = ?1 and x.age = ?2</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">Or</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByNameOrAge</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.name = ?1 or x.age = ?2</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">Between</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findBtAgeBetween</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.age between ?1 and ?2</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">LessThan</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByAgeLessThan</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.age &nbsp;&lt; &nbsp;?1</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">GreaterThan</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByAgeGreaterThan</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.age &gt; ?1</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">After/Before</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">…</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">…</p></td></tr><tr><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">IsNull</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">findByAgeIsNull</p></td><td style="padding:2pt 3pt;margin:0px;border-width:1pt;border-color:rgb(163,163,163);vertical-align:top;"><p style="margin:0in;font-size:12pt;color:rgb(69,69,69);font-family:'PingFang SC';">… &nbsp;where x.age is null</p></td></tr></tbody></table>
+
+<p><a href="https://blog.csdn.net/qq_34117825/article/details/72770547" target="_blank" rel="noopener">原文链接</a></p>
+<table cellspacing="1" cellpadding="1" border="1" style="border-spacing:0px;width:852px;border-style:solid;border-color:rgb(163,163,163);border-width:1pt;"><tbody><tr><td><span style="font-size:18px;">关键字</span></td><td><span style="font-size:18px;">方法命名</span></td><td><span style="font-size:18px;">sql where字句</span></td></tr><tr><td><span style="font-size:18px;">And</span></td><td><span style="font-size:18px;">findByNameAndPwd</span></td><td><span style="font-size:18px;">where name= ? and pwd =?</span></td></tr><tr><td><span style="font-size:18px;">Or</span></td><td><span style="font-size:18px;">findByNameOrSex</span></td><td><span style="font-size:18px;">where name= ? or sex=?</span></td></tr><tr><td><span style="font-size:18px;">Is,Equals</span></td><td><span style="font-size:18px;">findById,findByIdEquals</span></td><td><span style="font-size:18px;">where id= ?</span></td></tr><tr><td><span style="font-size:18px;">Between</span></td><td><span style="font-size:18px;">findByIdBetween</span></td><td><span style="font-size:18px;">where id between ? and ?</span></td></tr><tr><td><span style="font-size:18px;">LessThan</span></td><td><span style="font-size:18px;">findByIdLessThan</span></td><td><span style="font-size:18px;">where id &lt; ?</span></td></tr><tr><td><span style="font-size:18px;">LessThanEquals</span></td><td><span style="font-size:18px;">findByIdLessThanEquals</span></td><td><span style="font-size:18px;">where id &lt;= ?</span></td></tr><tr><td><span style="font-size:18px;">GreaterThan</span></td><td><span style="font-size:18px;">findByIdGreaterThan</span></td><td><span style="font-size:18px;">where id &gt; ?</span></td></tr><tr><td><span style="font-size:18px;">GreaterThanEqual</span></td><td><span style="font-size:18px;">findByAgeGreaterThanEqual</span></td><td><span style="font-size:18px;">where age &gt;= ?</span></td></tr><tr><td><span style="font-size:18px;">After</span></td><td><span style="font-size:18px;">findByIdAfter</span></td><td><span style="font-size:18px;">where id &gt; ?</span></td></tr><tr><td><span style="font-size:18px;">Before</span></td><td><span style="font-size:18px;">findByIdBefore</span></td><td><span style="font-size:18px;">where id &lt; ?</span></td></tr><tr><td><span style="font-size:18px;">IsNull</span></td><td><span style="font-size:18px;">findByNameIsNull</span></td><td><span style="font-size:18px;">where name is null</span></td></tr><tr><td><span style="font-size:18px;">isNotNull,NotNull</span></td><td><span style="font-size:18px;">findByNameNotNull</span></td><td><span style="font-size:18px;">where name is not null</span></td></tr><tr><td><span style="font-size:18px;">Like</span></td><td><span style="font-size:18px;">findByNameLike</span></td><td><span style="font-size:18px;">where name like ?</span></td></tr><tr><td><span style="font-size:18px;">NotLike</span></td><td><span style="font-size:18px;">findByNameNotLike</span></td><td><span style="font-size:18px;">where name not like ?</span></td></tr><tr><td><p><span style="font-size:18px;">StartingWith</span></p></td><td><span style="font-size:18px;">findByNameStartingWith</span></td><td><span style="font-size:18px;">where name like ‘?%’</span></td></tr><tr><td><span style="font-size:18px;">EndingWith</span></td><td><span style="font-size:18px;">findByNameEndingWith</span></td><td><span style="font-size:18px;">where name like ‘%?’</span></td></tr><tr><td><span style="font-size:18px;">Containing</span></td><td><span style="font-size:18px;">findByNameContaining</span></td><td><span style="font-size:18px;">where name like ‘%?%’</span></td></tr><tr><td><span style="font-size:18px;">OrderBy</span></td><td><span style="font-size:18px;">findByIdOrderByXDesc</span></td><td><span style="font-size:18px;">where id=? order by x desc</span></td></tr><tr><td><span style="font-size:18px;">Not</span></td><td><span style="font-size:18px;">findByNameNot</span></td><td><span style="font-size:18px;">where name &lt;&gt; ?</span></td></tr><tr><td><span style="font-size:18px;">In</span></td><td><span style="font-size:18px;">findByIdIn(Collection&lt;?&gt; c)</span></td><td><span style="font-size:18px;">where id in (?)</span></td></tr><tr><td><span style="font-size:18px;">NotIn</span></td><td><span style="font-size:18px;">findByIdNotIn(Collection&lt;?&gt; c)</span></td><td><span style="font-size:18px;">where id not &nbsp;in (?)</span></td></tr><tr><td><span style="font-size:18px;">True</span></td><td><p><span style="font-size:18px;">findByAaaTue</span></p></td><td><span style="font-size:18px;">where aaa = true</span></td></tr><tr><td><span style="font-size:18px;">False</span></td><td><span style="font-size:18px;">findByAaaFalse</span></td><td><span style="font-size:18px;">where aaa = false</span></td></tr><tr><td><span style="font-size:18px;">IgnoreCase</span></td><td><span style="font-size:18px;">findByNameIgnoreCase</span></td><td><span style="font-size:18px;">where UPPER(name)=UPPER(?)</span></td></tr><tr><td valign="top"><span style="font-size:18px;">top</span></td><td valign="top"><span style="font-size:18px;">findTop100<br><font color="red">测试了一下，会报错，网上相关资源也不多</font></span></td><td valign="top"><span style="font-size:18px;">top 10/where ROWNUM &lt;=10<br></span></td></tr></tbody></table>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://app12580.github.io/hexoBlog/2019/05/09/SpringData手册一：-JpaRepository命名规则/" data-id="cjvhtxaax0003nkuw0jrqti2p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/SpringData/">SpringData</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SpringData讲解一：-Repository与JpaSpecificationExecutor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexoBlog/2019/05/09/SpringData讲解一：-Repository与JpaSpecificationExecutor/" class="article-date">
+  <time datetime="2019-05-09T08:47:59.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexoBlog/2019/05/09/SpringData讲解一：-Repository与JpaSpecificationExecutor/">SpringData讲解一： @JpaRepository与JpaSpecificationExecutor</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="大体区别："><a href="#大体区别：" class="headerlink" title="大体区别："></a>大体区别：</h2><p>@JpaRepository： 通过创建方法名来做查询，只能做简单的查询。（包括CRUD，简单条件查询列表）<br>@JpaSpecificationExecutor：可以做复杂一些的查询呢，比如复杂条件查询、复杂条件分页、返回count值。(可以看JpaSpecificationExecutor的接口定义，一共只有5个方法，其中有个关键类型Specification<t>，可以用来存储查询条件)</t></p>
+<h2 id="JpaRepository相关查询功能"><a href="#JpaRepository相关查询功能" class="headerlink" title="JpaRepository相关查询功能"></a>JpaRepository相关查询功能</h2><p>a.Spring DataJPA框架在进行方法名解析时，会先把方法名多余的前缀截取掉，比如find、findBy、read、readBy、get、getBy，然后对剩下部分进行解析。</p>
+<p>b.假如创建如下的查询：findByUserDepUuid()，框架在解析该方法时，首先剔除</p>
+<p>findBy，然后对剩下的属性进行解析，假设查询实体为Doc。</p>
+<p>1：先判断userDepUuid （根据POJO规范，首字母变为小写）是否为查询实体的一个</p>
+<p>属性，如果是，则表示根据该属性进行查询；如果没有该属性，继续第二步；</p>
+<p>2：从右往左截取第一个大写字母开头的字符串此处为Uuid），然后检查剩下的字符串是</p>
+<p>否为查询实体的一个属性，如果是，则表示根据该属性进行查询；如果没有该属性，</p>
+<p>则重复第二步，继续从右往左截取；最后假设user为查询实体的一个属性；</p>
+<p>3：接着处理剩下部分（DepUuid），先判断user所对应的类型是否有depUuid属性，如</p>
+<p>果有，则表示该方法最终是根据“Doc.user.depUuid” 的取值进行查询；否则继</p>
+<p>续按照步骤2的规则从右往左截取，最终表示根据“Doc.user.dep.uuid” 的值进</p>
+<p>行查询。</p>
+<p>4:可能会存在一种特殊情况，比如Doc包含一个user的属性，也有一个userDep 属</p>
+<p>性，此时会存在混淆。可以明确在属性之间加上”_”以显式表达意图，比如</p>
+<p>“findByUser_DepUuid()”或者”findByUserDep_uuid()”</p>
+<p>c.特殊的参数： 还可以直接在方法的参数上加入分页或排序的参数，比如：</p>
+<p>Page<usermodel>findByName(String name, Pageable pageable);</usermodel></p>
+<p>List<usermodel>findByName(String name, Sort sort);</usermodel></p>
+<p>d.也可以使用JPA的NamedQueries，方法如下：</p>
+<p>1：在实体类上使用@NamedQuery，示例如下：</p>
+<p>@NamedQuery(name =”UserModel.findByAge”,query = “select o from UserModel</p>
+<p>o where o.age &gt;=?1”)</p>
+<p>2：在自己实现的DAO的Repository接口里面定义一个同名的方法，示例如下：</p>
+<p>publicList<usermodel> findByAge(int age);</usermodel></p>
+<p>3：然后就可以使用了，Spring会先找是否有同名的NamedQuery，如果有，那么就不</p>
+<p>会按照接口定义的方法来解析。</p>
+<p>e.还可以使用@Query来指定本地查询，只要设置nativeQuery为true，比如：</p>
+<p>@Query(value=”select* from tbl_user where name like %?1” ,nativeQuery=true)</p>
+<p>publicList<usermodel> findByUuidOrAge(String name);</usermodel></p>
+<p>注意：当前版本的本地查询不支持翻页和动态的排序</p>
+<p>f.使用命名化参数，使用@Param即可，比如：</p>
+<p>@Query(value=”selecto from UserModel o where o.name like %:nn”)</p>
+<p>publicList<usermodel> findByUuidOrAge(@Param(“nn”) String name);</usermodel></p>
+<p>g.同样支持更新类的Query语句，添加@Modifying即可，比如：</p>
+<p>@Modifying</p>
+<p>@Query(value=”updateUserModel o set o.name=:newName where o.name like %:nn”)</p>
+<p>public intfindByUuidOrAge(@Param(“nn”) String name,@Param(“newName”)String</p>
+<p>newName);</p>
+<p>注意：</p>
+<p>1：方法的返回值应该是int，表示更新语句所影响的行数</p>
+<p>2：在调用的地方必须加事务，没有事务不能正常执行</p>
+<p>f.创建查询的顺序</p>
+<p>Spring Data JPA在为接口创建代理对象时，如果发现同时存在多种上述</p>
+<p>情况可用，它该优先采用哪种策略呢？</p>
+<p><a href="jpa:repositories" target="_blank" rel="noopener">jpa:repositories</a>提供了query-lookup-strategy 属性，用以指定查</p>
+<p>找的顺序。它有如下三个取值：</p>
+<p>1：create-if-not-found：如果方法通过@Query指定了查询语句，则使用该语句实现</p>
+<p>查询；如果没有，则查找是否定义了符合条件的命名查询，如果找到，则使用该</p>
+<p>命名查询；如果两者都没有找到，则通过解析方法名字来创建查询。这是querylookup-</p>
+<p>strategy 属性的默认值</p>
+<p>2：create：通过解析方法名字来创建查询。即使有符合的命名查询，或者方法通过</p>
+<p>@Query指定的查询语句，都将会被忽略</p>
+<p>3：use-declared-query：如果方法通过@Query指定了查询语句，则使用该语句实现</p>
+<p>查询；如果没有，则查找是否定义了符合条件的命名查询，如果找到，则使用该</p>
+<p>命名查询；如果两者都没有找到，则抛出异常</p>
+<p>参考博客:<br><a href="https://blog.csdn.net/weixin_39418164/article/details/80320491" target="_blank" rel="noopener">JpaRepository与JpaSpecificationExecutor</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://app12580.github.io/hexoBlog/2019/05/09/SpringData讲解一：-Repository与JpaSpecificationExecutor/" data-id="cjvhtxaa60000nkuwgw7o3mjc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-SpringData入门一：-快速使用" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hexoBlog/2019/05/08/SpringData入门一：-快速使用/" class="article-date">
@@ -76,7 +251,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/05/08/SpringData入门一：-快速使用/">SpringData入门一： 快速使用</a>
+      <a class="article-title" href="/hexoBlog/2019/05/08/SpringData入门一：-快速使用/">SpringData使用入门一： 快速使用</a>
     </h1>
   
 
@@ -430,97 +605,12 @@
 
 
   
-    <article id="post-测试博客名" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexoBlog/2019/05/05/测试博客名/" class="article-date">
-  <time datetime="2019-05-05T14:47:47.000Z" itemprop="datePublished">2019-05-05</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/05/05/测试博客名/">测试博客名</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://app12580.github.io/hexoBlog/2019/05/05/测试博客名/" data-id="cjvbxdd9x0004hwuwgms0ut4w" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hexoBlog/2019/05/05/hello-world/" class="article-date">
-  <time datetime="2019-05-05T10:45:41.319Z" itemprop="datePublished">2019-05-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/05/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://app12580.github.io/hexoBlog/2019/05/05/hello-world/" data-id="cjvbxdd9a0000hwuw8ccftcfb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/hexoBlog/page/2/">2</a><a class="extend next" rel="next" href="/hexoBlog/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -543,7 +633,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/hexoBlog/tags/Memcache/" style="font-size: 20px;">Memcache</a> <a href="/hexoBlog/tags/SpringData/" style="font-size: 10px;">SpringData</a> <a href="/hexoBlog/tags/建站/" style="font-size: 10px;">建站</a> <a href="/hexoBlog/tags/缓存/" style="font-size: 15px;">缓存</a>
+      <a href="/hexoBlog/tags/Memcache/" style="font-size: 20px;">Memcache</a> <a href="/hexoBlog/tags/SpringData/" style="font-size: 20px;">SpringData</a> <a href="/hexoBlog/tags/建站/" style="font-size: 10px;">建站</a> <a href="/hexoBlog/tags/缓存/" style="font-size: 15px;">缓存</a>
     </div>
   </div>
 
@@ -565,23 +655,23 @@
       <ul>
         
           <li>
-            <a href="/hexoBlog/2019/05/08/SpringData入门一：-快速使用/">SpringData入门一： 快速使用</a>
+            <a href="/hexoBlog/2019/05/09/SpringData疑问合集/">SpringData疑问合集</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/09/SpringData手册一：-JpaRepository命名规则/">SpringData手册一： @JpaRepository命名规则</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/09/SpringData讲解一：-Repository与JpaSpecificationExecutor/">SpringData讲解一： @JpaRepository与JpaSpecificationExecutor</a>
+          </li>
+        
+          <li>
+            <a href="/hexoBlog/2019/05/08/SpringData入门一：-快速使用/">SpringData使用入门一： 快速使用</a>
           </li>
         
           <li>
             <a href="/hexoBlog/2019/05/08/Memcache入门三：-SpringBoot整合Memcache/">Memcache入门三： SpringBoot整合Memcache</a>
-          </li>
-        
-          <li>
-            <a href="/hexoBlog/2019/05/07/Memcache入门二：通过cmd客户端使用Memcache基本命令/">Memcache入门二：通过cmd客户端使用Memcache基本命令</a>
-          </li>
-        
-          <li>
-            <a href="/hexoBlog/2019/05/07/Memcache入门（一）-1/">Memcache入门一： windows下安装和部署</a>
-          </li>
-        
-          <li>
-            <a href="/hexoBlog/2019/05/06/缓存通用概念及策略/">缓存通用概念及策略</a>
           </li>
         
       </ul>
