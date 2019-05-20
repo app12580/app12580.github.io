@@ -77,6 +77,7 @@
 
 
 
+  <meta name="keywords" content="缓存,">
 
 
 
@@ -86,17 +87,19 @@
 
 
 
-<meta name="description" content="find()函数的projection说明参考博客 用法说明find()查询方法：根据查询条件返回符合条件的所有文档MongoDB 查询文档使用 find() 方法，find() 方法以非结构化的方式来显示所有文档。语法：db.collectionName.find(query, projection)参数说明： query ：可选，使用查询操作符指定查询条件projection ：可选，使用投影">
+
+<meta name="description" content="使用方法分类大体分为三种：原生客户端，xxxTemplate，与SpringData整合  原生客户端：特点：创建连接后，获取客户端，使用方法基本与原生的客户端命令一直，比如：jedis，db xxxTemplate:特点：与spring成功整合后，会通过@Autowired自动装填，使用方法是基于java对象的。例如 redisTemplate.opsForValue().set() sprin">
+<meta name="keywords" content="缓存">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MongoDB遇到问题合集">
-<meta property="og:url" content="https://app12580.github.io/2019/05/17/MongoDB遇到问题合集/index.html">
+<meta property="og:title" content="缓存小结(个人心得)">
+<meta property="og:url" content="https://app12580.github.io/2019/05/18/缓存小结-个人心得/index.html">
 <meta property="og:site_name" content="Zhaks个人博客">
-<meta property="og:description" content="find()函数的projection说明参考博客 用法说明find()查询方法：根据查询条件返回符合条件的所有文档MongoDB 查询文档使用 find() 方法，find() 方法以非结构化的方式来显示所有文档。语法：db.collectionName.find(query, projection)参数说明： query ：可选，使用查询操作符指定查询条件projection ：可选，使用投影">
+<meta property="og:description" content="使用方法分类大体分为三种：原生客户端，xxxTemplate，与SpringData整合  原生客户端：特点：创建连接后，获取客户端，使用方法基本与原生的客户端命令一直，比如：jedis，db xxxTemplate:特点：与spring成功整合后，会通过@Autowired自动装填，使用方法是基于java对象的。例如 redisTemplate.opsForValue().set() sprin">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-17T16:47:32.691Z">
+<meta property="og:updated_time" content="2019-05-17T17:06:59.419Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MongoDB遇到问题合集">
-<meta name="twitter:description" content="find()函数的projection说明参考博客 用法说明find()查询方法：根据查询条件返回符合条件的所有文档MongoDB 查询文档使用 find() 方法，find() 方法以非结构化的方式来显示所有文档。语法：db.collectionName.find(query, projection)参数说明： query ：可选，使用查询操作符指定查询条件projection ：可选，使用投影">
+<meta name="twitter:title" content="缓存小结(个人心得)">
+<meta name="twitter:description" content="使用方法分类大体分为三种：原生客户端，xxxTemplate，与SpringData整合  原生客户端：特点：创建连接后，获取客户端，使用方法基本与原生的客户端命令一直，比如：jedis，db xxxTemplate:特点：与spring成功整合后，会通过@Autowired自动装填，使用方法是基于java对象的。例如 redisTemplate.opsForValue().set() sprin">
 
 
 
@@ -126,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="https://app12580.github.io/2019/05/17/MongoDB遇到问题合集/">
+  <link rel="canonical" href="https://app12580.github.io/2019/05/18/缓存小结-个人心得/">
 
 
 
@@ -152,7 +155,7 @@
 <link href="/lib/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" type="text/css">
 
 
-  <title>MongoDB遇到问题合集 | Zhaks个人博客</title>
+  <title>缓存小结(个人心得) | Zhaks个人博客</title>
   
 
 
@@ -300,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://app12580.github.io/2019/05/17/MongoDB遇到问题合集/">
+    <link itemprop="mainEntityOfPage" href="https://app12580.github.io/2019/05/18/缓存小结-个人心得/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaks">
@@ -317,7 +320,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">MongoDB遇到问题合集</h2>
+          <h2 class="post-title" itemprop="name headline">缓存小结(个人心得)</h2>
         
 
         <div class="post-meta">
@@ -331,8 +334,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-17T14:20:04+08:00">
-                2019-05-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-18T01:01:00+08:00">
+                2019-05-18
               </time>
             
 
@@ -401,15 +404,12 @@
       
 
       
-        <h3 id="find-函数的projection说明"><a href="#find-函数的projection说明" class="headerlink" title="find()函数的projection说明"></a>find()函数的projection说明</h3><p><a href="https://www.cnblogs.com/PatrickLiu/p/8727470.html" target="_blank" rel="noopener">参考博客</a></p>
-<p><strong>用法说明</strong><br>find()查询方法：根据查询条件返回符合条件的所有文档<br>MongoDB 查询文档使用 find() 方法，find() 方法以非结构化的方式来显示所有文档。<br>语法：db.collectionName.find(query, projection)<br>参数说明：<br> query ：可选，使用查询操作符指定查询条件<br><strong>projection ：可选，使用投影操作符指定返回的键。查询时返回文档中所有键值， 只需省略该参数即可（默认省略）。格式类似{<key>:1,<key>:1,_id:0}，0值表示不显示，其他值均为显示，无论正负值。该参数控制不显示的字段，需要显示的不在该参数里书写就可以。</key></key></strong><br>如果你需要以易读的方式来读取数据，可以使用 pretty() 方法，语法格式如下：<br>db.collectionName.find().pretty()<br>pretty() 方法以格式化的方式来显示所有文档。</p>
-<p><strong>遇到问题</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;title&quot;:1,_id:0&#125;  不报错</span><br><span class="line">&#123;&quot;title&quot;:0,_id:1&#125;  报错</span><br><span class="line">error: &#123;</span><br><span class="line">        &quot;ok&quot; : 0,</span><br><span class="line">        &quot;errmsg&quot; : &quot;Projection cannot have a mix of inclusion and exclusion.&quot;,</span><br><span class="line">        &quot;code&quot; : 2,</span><br><span class="line">        &quot;codeName&quot; : &quot;BadValue&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>解释</strong><br>projection的用法有三种：<br><strong> 只选择显示哪些字段
-</strong> 只选择不显示哪些字段<br>** 只选择显示哪些字段，同时可以选择让”_id”不显示</p>
-<h3 id="springdata无法初始化容器"><a href="#springdata无法初始化容器" class="headerlink" title="springdata无法初始化容器"></a>springdata无法初始化容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name &apos;userMongodbDao&apos; defined in null: Cannot register bean definition [Root bean: class [org.springframework.data.mongodb.repository.support.MongoRepositoryFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] for bean &apos;userMongodbDao&apos;: There is already [Root bean: class [org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] bound.</span><br></pre></td></tr></table></figure>
-<p>找不到资料，是少了@Configuration还是少了配置<br>加了配置以后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name &apos;userMongodbDao&apos; defined in null: Cannot register bean definition [Root bean: class [org.springframework.data.mongodb.repository.support.MongoRepositoryFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] for bean &apos;userMongodbDao&apos;: There is already [Root bean: class [org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] bound.</span><br></pre></td></tr></table></figure></p>
-<p>遗留问题，MongoDB的@Id和springdata的@Id注解没有兼容，不能同时用Entity</p>
+        <h2 id="使用方法分类"><a href="#使用方法分类" class="headerlink" title="使用方法分类"></a>使用方法分类</h2><p>大体分为三种：原生客户端，xxxTemplate，与SpringData整合</p>
+<ul>
+<li>原生客户端：特点：创建连接后，获取客户端，使用方法基本与原生的客户端命令一直，比如：jedis，db</li>
+<li>xxxTemplate:特点：与spring成功整合后，会通过@Autowired自动装填，使用方法是基于java对象的。例如 redisTemplate.opsForValue().set()</li>
+<li>springdata:特点：使用方法同一，基本一致。例如整合redis，memcache</li>
+</ul>
 
       
     </div>
@@ -422,6 +422,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/缓存/" rel="tag"><i class="fas fa-tag"></i> 缓存</a>
+          
+        </div>
       
 
       
@@ -437,7 +443,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://app12580.github.io/2019/05/17/MongoDB遇到问题合集/" title="MongoDB遇到问题合集">https://app12580.github.io/2019/05/17/MongoDB遇到问题合集/</a>
+    <a href="https://app12580.github.io/2019/05/18/缓存小结-个人心得/" title="缓存小结(个人心得)">https://app12580.github.io/2019/05/18/缓存小结-个人心得/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -452,8 +458,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/17/MongoDB入门一：快速使用/" rel="next" title="MongoDB入门一：快速使用">
-                <i class="fas fa-chevron-left"></i> MongoDB入门一：快速使用
+              <a href="/2019/05/17/MongoDB入门二：SpringDataMongoDB/" rel="next" title="MongoDB入门二：SpringDataMongoDB">
+                <i class="fas fa-chevron-left"></i> MongoDB入门二：SpringDataMongoDB
               </a>
             
           </div>
@@ -462,8 +468,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/17/MongoDB入门二：SpringDataMongoDB/" rel="prev" title="MongoDB入门二：SpringDataMongoDB">
-                MongoDB入门二：SpringDataMongoDB <i class="fas fa-chevron-right"></i>
+              <a href="/2019/05/18/elasticsearch在windows下的安装部署/" rel="prev" title="elasticsearch在windows下的安装部署">
+                elasticsearch在windows下的安装部署 <i class="fas fa-chevron-right"></i>
               </a>
             
           </div>
@@ -613,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#find-函数的projection说明"><span class="nav-number">1.</span> <span class="nav-text">find()函数的projection说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#springdata无法初始化容器"><span class="nav-number">2.</span> <span class="nav-text">springdata无法初始化容器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法分类"><span class="nav-number">1.</span> <span class="nav-text">使用方法分类</span></a></li></ol></div>
             
 
           </div>
